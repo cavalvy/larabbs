@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Handlers\ImageUploadHandler;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 
@@ -17,9 +18,18 @@ class UsersController extends Controller
          return view('users.show',compact('user'));
     }
 
-    public function update(UserRequest $require,User $user)
+    public function update(UserRequest $request,ImageUploadHandler $uploder,User $user)
     {
-        $user->update($require->all());
+        $data = $request->all();
+
+        if($request->avatar){
+            $result = $uploder->save($request->avatar,'avatars',$user->id,362);
+
+            if($result){
+                $data['avatar'] = $result['path'];
+            }
+        }
+        $user->update($data);
         return redirect()->route('users.show',$user->id)->with('success','个人资料更新成功！');
     }
 
