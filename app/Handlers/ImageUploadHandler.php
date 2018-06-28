@@ -39,7 +39,8 @@ class ImageUploadHandler
             $this->reduceSize($uplod_path . '/' . $filename,$max_width);
         }
         return[
-            'path' => config('app.url') . "/$folder_name/$filename"
+           // 'path' => config('app.url') . "/$folder_name/$filename"
+            'path' => 'http://' . $_SERVER['SERVER_NAME'] . "/$folder_name/$filename"
         ];
     }
 
