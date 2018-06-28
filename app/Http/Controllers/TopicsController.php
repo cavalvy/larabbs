@@ -16,7 +16,8 @@ class TopicsController extends Controller
 
 	public function index()
 	{
-		$topics = Topic::paginate();
+	    //通过 Eloquent 提供的 预加载功能 来解决N+1问题
+		$topics = Topic::with('user','category')->paginate();//laravel默认15条
 		return view('topics.index', compact('topics'));
 	}
 
