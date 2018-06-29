@@ -19,7 +19,7 @@ class SeedCategoriesData extends Migration
                 'description' => '分享创造，分享发现'
             ],[
                 'name'        => '教程',
-                'description' => '开发技巧、推荐扩展包等',
+                'description' => '',
             ],[
                 'name'        => '问答',
                 'description' => '请保持友善，互帮互助',
